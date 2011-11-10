@@ -9,3 +9,4 @@ log/*.log
 .project
 .DS_Store
 Gemfile.lock
+/.settings

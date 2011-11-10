@@ -1,7 +1,0 @@
-<h1 class="heading">All Talks</h1>
-<p class="ingress">An alphabetical listing of all talks, scheduled and <%= link_to('unscheduled', :controller => "talks", :action => "unscheduled") %>.</p>
-<% if (@talks.count > 0) %>
-	<%= render '/shared/talk/listing' %>
-<% else %>
-	<p>Seems no-one has anything to say.</p>
-<% end %>
