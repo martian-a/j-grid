@@ -7,9 +7,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 
-public class GridTest {
+public class ScheduleTest {
 
-	Grid defaultGrid;
+	Schedule defaultSchedule;
 	
 	@Rule
 	public TestName name = new TestName();
@@ -17,13 +17,13 @@ public class GridTest {
 	@Before
 	public void setUp() throws Exception {
 		
-		defaultGrid = new Grid();
+		defaultSchedule = new Schedule();
 	}	
 
 	@Test
-	public void testGrid() {
+	public void testSchedule() {
 
-		assertTrue(defaultGrid.getSlots() == null);
+		assertTrue(defaultSchedule.getSlots() == null);
 		
 	}
 		
