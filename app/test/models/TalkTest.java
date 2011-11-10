@@ -2,9 +2,6 @@ package models;
 
 import static org.junit.Assert.*;
 
-import java.util.GregorianCalendar;
-import java.util.TimeZone;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

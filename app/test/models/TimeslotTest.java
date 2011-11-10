@@ -3,8 +3,6 @@ package models;
 import static org.junit.Assert.*;
 
 import java.util.GregorianCalendar;
-import java.util.TimeZone;
-
 import models.Talk;
 import models.Timeslot;
 
