@@ -1,13 +1,13 @@
-Griddy
+J-Grid
 ======
 
-A Ruby on Rails based BarCamp grid planning system.
+A Java-based digital schedule application, derived from Griddy (https://github.com/geeksoflondon/grid4rails).
 
 
 License
 -------
 
-Griddy is licensed under the Affero General Public License v3.0.
+J-Grid is licensed under the Affero General Public License v3.0.
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the Affero General Public License as published by the Free
