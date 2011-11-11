@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="event">
+    	<xs:complexType>
+    		<xs:sequence>
+    			<xs:element name="name" type="xs:string" />
+    			<xs:element name="hashtag" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+    			<xs:element name="rooms" type="roomList" />
+    			<xs:element name="timeslots" type="timeslotList" />
+    		</xs:sequence>
+    	</xs:complexType>
+    </xs:element>
+    
+    <xs:complexType name="roomList">
+    	<xs:sequence>
+    		<xs:element ref="room" maxOccurs="unbounded" />    		
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="timeslotList">
+    	<xs:sequence>
+    		<xs:choice maxOccurs="unbounded">
+    			<xs:element ref="timeslot" />
+				<xs:element ref="break" />
+			</xs:choice>    		    		
+    	</xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="room">
+    	<xs:complexType mixed="true">
+    	    <xs:sequence>   	
+				<xs:element name="name" type="xs:string" minOccurs="0" />
+				<xs:element name="description" type="xs:string" minOccurs="0" />
+				<xs:element name="facilities" type="xs:string" minOccurs="0" />
+			</xs:sequence>
+			<xs:attribute name="shortcode" type="shortcode" use="required" />
+    		<xs:attribute name="capacity" type="xs:string" /> 
+    		<xs:attribute name="inGrid" type="xs:boolean" default="true" />
+    	</xs:complexType>
+    </xs:element>
+    
+    <xs:element name="timeslot">
+    	<xs:complexType mixed="true">
+    		<xs:sequence>
+    			<xs:element name="name" type="xs:string" minOccurs="0" />
+    			<xs:element ref="talk" minOccurs="0" />
+    		</xs:sequence>    		    		
+    		<xs:attribute name="start" type="xs:dateTime" />
+    		<xs:attribute name="end" type="xs:dateTime" />
+    		<xs:attribute name="duration" type="xs:duration" />
+    		<xs:attribute name="repeat" type="xs:integer" />
+    		<xs:attribute name="break" type="xs:duration" /> 
+    		<xs:attribute name="locked" type="xs:boolean" />   		
+    	</xs:complexType>
+    </xs:element>	
+    
+	<xs:element name="break">
+    	<xs:complexType>
+    		<xs:attribute name="duration" type="xs:duration" />	    			    				
+    	</xs:complexType>	
+    </xs:element>
+    
+    <xs:simpleType name="shortcode">
+    	<xs:restriction base="xs:string">
+    		<xs:length value="3" fixed="true" />
+    		<xs:whiteSpace value="collapse" fixed="true" />
+    	</xs:restriction>
+    </xs:simpleType>
+    
+    <xs:element name="talk">
+    	<xs:complexType>
+    		<xs:sequence>
+    			<xs:element name="room">
+    				<xs:complexType>
+    					<xs:attribute name="ref" type="shortcode" use="required" />
+    				</xs:complexType>
+    			</xs:element>
+    			<xs:element name="title">
+    				<xs:complexType>
+    					<xs:attribute name="inherit" type="xs:boolean" />
+    				</xs:complexType>
+    			</xs:element>
+    			<xs:element name="description" type="xs:string" minOccurs="0" />
+    			<xs:element name="speaker" type="xs:string" minOccurs="0" />    				
+    		</xs:sequence>
+    		<xs:attribute name="locked" type="xs:boolean" />
+    	</xs:complexType>
+    </xs:element>
+    
+</xs:schema>

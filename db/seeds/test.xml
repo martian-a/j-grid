@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<event 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:noNamespaceSchemaLocation="event.xsd"
+>
+	<name>Test Event</name>
+	<hashtag>test</hashtag>
+	<rooms>
+		<room shortcode="any" capacity="250" inGrid="false">
+			<name>Everywhere</name>
+			<description>Any and all rooms (assuming it's not out-of-bounds and there's no other talk scheduled in it).</description>
+		</room>
+		<room shortcode="com" capacity="250" inGrid="false">
+			<name>Common Room</name>
+			<description>In the basement, down the stairs and to the left.</description>
+		</room>
+		<room shortcode="rm1" capacity="60">
+			<name>Room One</name>
+			<description>A room that holds approximately sixty people and is equipped with a projector and whiteboard.</description>
+			<facilities>Projector, Whiteboard.</facilities>
+		</room>								
+	</rooms>
+	<timeslots>
+		<timeslot start="2011-10-29T09:30:00Z" duration="PT30M" />
+		<timeslot duration="PT20M" />
+		<timeslot duration="PT10M" />
+	</timeslots>	
+</event>

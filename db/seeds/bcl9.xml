@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<event 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:noNamespaceSchemaLocation="event.xsd"
+>
+	<name>BarCamp London 9</name>
+	<hashtag>bcl9</hashtag>
+	<rooms>
+		<room shortcode="any" capacity="250" inGrid="false">
+			<name>Everywhere</name>
+			<description>Any and all rooms (assuming it's not out-of-bounds and there's no other talk scheduled in it).</description>
+		</room>
+		<room shortcode="hel" capacity="250" inGrid="false">
+			<name>The Hellmouth</name>
+			<description>The common room.  In the basement, down the stairs and to the left.</description>
+			<facilities></facilities>
+		</room>
+		<room shortcode="cem" capacity="60">
+			<name>0001 Cemetery Lane</name>
+			<description>Large room in the basement.  To your right, behind you as you come down the stairs (near the zombie-infested toilets, practically under the stairs).</description>
+			<facilities>Teaching pod, intermittent Lecture capture.</facilities>
+		</room>								
+	</rooms>
+	<timeslots>
+		<timeslot start="2011-10-29T09:30:00Z" duration="PT40M" locked="true">
+			<name>Opening Talk</name>			
+			<talk>
+				<room ref="hel" />			
+				<title inherit="true" />
+				<description>Welcome to BarcampLondon9!</description>
+				<speaker>The Crew</speaker>
+			</talk>
+		</timeslot>
+		<timeslot duration="PT20M" locked="true">
+			<name>Grid Population</name>
+			<talk>
+				<room ref="hel" />			
+				<title inherit="true" />
+				<description>Add your talk to the grid</description>
+				<speaker>You</speaker>
+			</talk>						
+		</timeslot>
+		<timeslot duration="PT30M" />
+		<break duration="PT5M" />
+		<timeslot duration="PT25M" repeat="3" break="PT5M" />
+		<timeslot duration="PT60M" locked="true">
+			<name>Lunch</name>	
+			<talk>
+				<room ref="hel" />			
+				<title inherit="true" />
+			</talk>					
+		</timeslot>
+		<timeslot duration="PT30M" repeat="4" break="PT5M" />
+		<timeslot duration="PT30M" locked="true">
+			<name>Tea Break</name>		
+			<talk>
+				<room ref="hel" />			
+				<title inherit="true" />
+			</talk>						
+		</timeslot>
+		<timeslot duration="PT25M" repeat="4" break="PT5M" />			
+		<timeslot duration="PT90M" locked="true">
+			<name>Dinner</name>		
+			<talk>
+				<room ref="hel" />			
+				<title inherit="true" />
+			</talk>						
+		</timeslot>		
+		<timeslot duration="PT20M" repeat="2" break="PT10M" />
+		<timeslot end="2011-10-30T08:00:00Z" locked="true">
+			<name>Games, etc.</name>
+			<talk>
+				<room ref="any" />			
+				<title inherit="true" />
+			</talk>								
+		</timeslot>
+		<timeslot duration="PT120M" locked="true">
+			<name>Breakfast</name>
+			<talk>
+				<room ref="hel" />			
+				<title inherit="true" />
+			</talk>								
+		</timeslot>
+		<timeslot duration="PT30M" repeat="4" break="PT10M" />
+		<break duration="PT10M" />
+		<timeslot duration="PT20M" />
+		<timeslot duration="PT60M" locked="true">
+			<name>Lunch</name>
+			<talk>
+				<room ref="hel" />			
+				<title inherit="true" />
+			</talk>								
+		</timeslot>
+		<timeslot duration="PT25M" repeat="4" break="PT5M" />
+		<break duration="PT5M" />
+		<timeslot duration="PT15M" locked="true">
+			<name>Closing Talk</name>
+			<talk>
+				<room ref="hel" />			
+				<title inherit="true" />
+			</talk>								
+		</timeslot>
+		<timeslot duration="PT30M" locked="true">
+			<name>Tidy-up</name>
+			<talk>
+				<room ref="any" />			
+				<title inherit="true" />
+			</talk>								
+		</timeslot>		
+	</timeslots>	
+</event>
