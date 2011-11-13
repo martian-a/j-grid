@@ -29,7 +29,7 @@ public class SlotTest {
 		end.setTimeZone(TimeZone.getTimeZone("UTC"));
 			
 		defaultTimeslot = new Timeslot(start, end);
-		defaultRoom = new Room();
+		defaultRoom = new Room("tst");
 		defaultSlot = new Slot(defaultTimeslot, defaultRoom);
 		defaultTalk = new Talk("Test title", "Test description", "Test speaker");
 	}	

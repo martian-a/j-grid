@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<event 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:noNamespaceSchemaLocation="../../event.xsd"	
+>
+	<name>Test Event</name>
+	<hashtag>test</hashtag>
+	<rooms>
+		<room shortcode="any" capacity="250" inGrid="false">
+			<name>Everywhere</name>
+			<description>Any and all rooms (assuming it's not out-of-bounds and there's no other talk scheduled in it).</description>
+		</room>									
+	</rooms>
+	<timeslots>
+		<timeslot start="2011-10-29T09:30:00Z" duration="PT30M" break="PT15M" />
+		<timeslot duration="PT20M" break="PT10M" />
+		<timeslot duration="PT10M" break="PT5M" />
+		<break duration="PT5M" />
+		<timeslot duration="PT10M" break="PT5M" />
+		<timeslot duration="PT10M" />
+		<break duration="PT5M" />
+		<timeslot duration="PT10M" break="PT5M" />
+	</timeslots>	
+</event>

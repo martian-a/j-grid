@@ -7,7 +7,7 @@ import java.util.TimeZone;
 
 public abstract class DataObject extends Observable {
 
-	public static final TimeZone TIMEZONE = TimeZone.getTimeZone("UTC");
+	public static final TimeZone TIMEZONE = TimeZone.getTimeZone("GMT+00:00");
 
 	private GregorianCalendar createdAt;
 	private GregorianCalendar updatedAt;

@@ -2,6 +2,8 @@ package models;
 
 import static org.junit.Assert.*;
 
+import java.util.zip.DataFormatException;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -9,6 +11,7 @@ import org.junit.rules.TestName;
 
 public class RoomTest {	
 	
+	String defaultShortcode;
 	Room defaultRoom;
 	
 	@Rule
@@ -17,7 +20,8 @@ public class RoomTest {
 	@Before
 	public void setUp() throws Exception {
 		
-		defaultRoom = new Room();
+		defaultShortcode = "tst";
+		defaultRoom = new Room(defaultShortcode);
 		
 	}	
 	
@@ -29,7 +33,7 @@ public class RoomTest {
 		System.out.println(this.name.getMethodName());
 		
 		assertTrue(defaultRoom.getName() == null);
-		assertTrue(defaultRoom.getShortcode() == null);
+		assertTrue(defaultRoom.getShortcode() == defaultShortcode);
 		assertTrue(defaultRoom.getDescription() == null);
 		assertTrue(defaultRoom.getFacilities() == null);
 		assertTrue(defaultRoom.getCapacity() == 0);
@@ -39,13 +43,13 @@ public class RoomTest {
 	}
 
 	@Test
-	public void testGetName() {
+	public void testSetGetName() {
 		
 		// Announce
 		System.out.println(this.name.getMethodName());
 		
 		String testName = "Test Room 1";		
-		Room defaultRoom = new Room(testName);	
+		defaultRoom.setName(testName);	
 		assertTrue(defaultRoom.getName().equals(testName));
 			
 	}	
@@ -90,7 +94,12 @@ public class RoomTest {
 		System.out.println(this.name.getMethodName());		
 		
 		int testCapacity = 250;
-		defaultRoom.setCapacity(testCapacity);
+		try {
+			defaultRoom.setCapacity(testCapacity);
+		} catch (DataFormatException e) {
+			e.printStackTrace();
+			fail(e.getMessage());
+		}
 		assertTrue(defaultRoom.getCapacity() == testCapacity);
 	}
 

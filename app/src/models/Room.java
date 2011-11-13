@@ -1,24 +1,50 @@
 package models;
 
-class Room extends DataObject {
+import java.io.File;
+import java.io.InputStream;
+import java.util.TreeSet;
+import java.util.zip.DataFormatException;
 
-	private String name;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import uk.co.bluegumtree.code.java.util.Logger;
+import uk.co.bluegumtree.code.java.util.XmlReader;
+
+class Room extends DataObject implements Comparable<Room> {
+
 	private String shortcode;
+	private String name;
+	private int capacity;
 	private String description;
 	private String facilities;
-	private int capacity;
 	
-	public Room() {
+	private Room() {
 		super();
-		this.name = null;
 		this.shortcode = null;
-		this.description = null;
+		this.name = null;		
 		this.capacity = 0;
+		this.description = null;
+		this.facilities = null;
 	}
 	
-	public Room(String nameIn) {
+	public Room(String shortcodeIn) {
+		this(shortcodeIn, null, null, null, null);
+	}
+	
+	public Room(String shortcodeIn, String nameIn, Integer capacityIn, String descriptionIn, String facilitiesIn) {
 		this();
+		this.setShortcode(shortcodeIn);
 		this.setName(nameIn);
+		try {
+			this.setCapacity(capacityIn);
+		} catch (DataFormatException e) {
+			Logger.log(e);
+		}
+		this.setDescription(descriptionIn);
+		this.setFacilities(facilitiesIn);
 	}
 	
 	/**
@@ -92,13 +118,15 @@ class Room extends DataObject {
 	/**
 	 * Specify the approximate number of people that this room can hold.
 	 * @param capacityIn the number of people that the room can hold
+	 * @throws DataFormatException 
 	 */
-	public void setCapacity(int capacityIn) {
-		
-		// TODO: Validation: check that the capacity is a positive number				
-		
-		this.capacity = capacityIn;
-	}
+	public void setCapacity(Integer capacityIn) throws DataFormatException {
+						
+		if (capacityIn == null || capacityIn < 0) {		
+			throw new DataFormatException("Positive integer expected.");
+		}
+		this.capacity = capacityIn;	
+	}	
 	
 	/**
 	 * @return the capacity of this room
@@ -106,5 +134,64 @@ class Room extends DataObject {
 	public int getCapacity() {
 		return this.capacity;
 	}
+	
+	/**
+	 * Parses an XML seed file to create the rooms required for the schedule
+	 * @param seedXml XML seed file
+	 * @return a collection of rooms
+	 */
+	public static TreeSet<Room> load(Document seedXml) {
+		
+		TreeSet<Room> rooms = new TreeSet<Room>();
+			
+		NodeList roomsXml = XmlReader.readNodeList(seedXml, "event/rooms/room");
+		for (int i = 0; i < roomsXml.getLength(); i++) {
+			rooms.add(Room.load((Element) roomsXml.item(i)));
+		}
+		
+		return rooms;
+	}
+	
+	/**
+	 * Constructs a new room object from seed data.
+	 * @param roomXml an XML element containing the seed data
+	 * @return the newly constructed room object
+	 */
+	public static Room load(Element roomXml) {		
+				
+		String shortcode = XmlReader.readString(roomXml, "@shortcode");
+		String name  = XmlReader.readString(roomXml, "name");
+		Integer capacity = XmlReader.readInteger(roomXml, "@capacity");
+		String description = XmlReader.readString(roomXml, "description");
+		String facilities = XmlReader.readString(roomXml, "facilities");				
+		
+		return new Room(shortcode, name, capacity, description, facilities);
+	}
+	
+	@Override
+	public int compareTo(Room anotherRoom) {
+
+		// If the Rooms have the same shortcode
+		// compare their names
+		if (this.equals(anotherRoom)) {
+			
+			if (this.name.equals(anotherRoom.name)) {
+				return this.name.compareToIgnoreCase(anotherRoom.name);
+			}
+			
+		}
+		
+		// Compare their shortcodes
+		return this.shortcode.compareToIgnoreCase(anotherRoom.shortcode);
+	}
+	
+	public boolean equals(Room anotherRoom) {
+		
+		if (this.shortcode.equals(anotherRoom.shortcode)) {
+			return true;
+		}		
+		return false;
+	}
+	
 	
 }
